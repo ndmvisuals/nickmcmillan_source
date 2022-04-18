@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML & CSS Resume Template</title>
+
+    <!-- Google font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    {{ range .Site.Params.custom_css -}}
+    <link rel="stylesheet" href="{{ . | absURL }}">
+{{- end }}
+    <!-- <link rel="stylesheet" href="/css/resume-style.css"> -->
+</head>
+<body>
+
+    {{ $sep := "," }}
+    <!-- Entries -->
+    {{ $entry_url := "/data/nicks_resume_data.csv" }}    
+    {{ $resume := getCSV $sep $entry_url }}
+
+    <!-- Skills -->
+    {{ $skills_url := "/data/nicks_resume_skills.csv" }}    
+    {{ $skills := getCSV $sep $skills_url }}
+
+    <!-- Contact -->
+    {{ $contact_url := "/data/nicks_resume_contact.csv" }}    
+    {{ $contact := getCSV $sep $contact_url }}
+
+
+
+    <main class="resume-contents">
+        <section class="left-section">
+            <div class="left-section-contents">
+                <div class="profile">
+                    <img class="profile-image" src="/static/img/nick_profile.jpg" alt="Profile image">
+                    <p class="name">Nick McMillan</p>
+                    <p class="profession">Data and Video Journalist</p>
+                </div>
+                <div class="contact-info">
+                    <p class="left-title">Contact Info</p>
+                    {{range $elem_index, $elem_val := $contact}}   
+
+                    <ul>
+                        {{ if in (index $elem_val 0) "phone" }}
+                        <li><i class="fa fa-phone"></i> {{index $elem_val 1}}
+                        </li>
+                        {{end}}
+                        {{ if in (index $elem_val 0) "email" }}
+                        <li><i class="fa fa-envelope"></i>{{index $elem_val 1}}
+                        </li>
+                        {{end}}
+                        {{ if in (index $elem_val 0) "website" }}
+                        <li><i class="fa fa-globe"></i>{{index $elem_val 1}}
+                        </li>
+                        {{end}}
+                        {{ if in (index $elem_val 0) "github" }}
+                        <li><i class="fa fa-github"></i>{{index $elem_val 1}}
+                        </li>
+                        {{end}}
+                        <!-- <li><i class="fa fa-map-marker"></i>70 Dream St, USA
+                        </li> -->
+                    </ul>
+
+                    {{end}}
+                </div>         
+                   
+                    
+                 
+
+
+                <div class="skills">
+                    <p class="left-title">Skills</p>
+                    {{range $elem_index, $elem_val := $skills}}  
+                    <ul>
+                        <li><p>{{index $elem_val 1}}</p></li>                       
+                    </ul>
+                    {{end}}
+                </div>
+
+                <!-- <div class="references">
+                    <p class="left-title">References</p>
+                    <div class="refer">
+                        <p class="referance-name">Lorem ipsum</p>
+                        <p class="referance-profession">Lorem, ipsum dolor.</p>
+                        <ul>
+                            <li>
+                                <i class="fa fa-phone"></i>
+                                +123456789
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope"></i>
+                                loremipsum@amail.com
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="refer">
+                        <p class="referance-name">Lorem ipsum</p>
+                        <p class="referance-profession">Lorem, ipsum dolor.</p>
+                        <ul>
+                            <li>
+                                <i class="fa fa-phone"></i>
+                                +123456789
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope"></i>
+                                loremipsum@amail.com
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <section class="right-section">
+            <div class="right-section-contents">
+                <!-- <section class="about gap">
+                    <div class="right-title">About Me</div>
+                    <p class="about-me-contents">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae aliquid ab tempore deleniti modi animi facere, 
+                        laborum illum quis in quidem distinctio quod officia unde. Aspernatur eligendi architecto ipsam sint alias consequatur 
+                        at modi magni in, accusantium iure voluptates eius possimus? Incidunt veritatis illum corrupti nobis labore expedita.<br>
+                        <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus temporibus velit minima assumenda atque inventore natus hic, 
+                        voluptatem est explicabo voluptate vel, adipisci illum, ratione repellendus! Consequuntur veniam modi nihil.
+                    </p>
+                </section> -->
+
+                <section class="experience gap">
+                    <div class="right-title">Experience</div>
+                    {{range $elem_index, $elem_val := $resume}}                       
+                        
+                        {{ if in (index $elem_val 0) "experience" }}
+                            <div class="experience-contents">
+                                <div class="exp-left">
+                                    <p class="exp-company-name">{{index $elem_val 3}}</p>
+                                    <p class="exp-time-period">{{index $elem_val 4}}-{{index $elem_val 5}}</p>
+                                </div>
+                                <div class="exp-right">
+                                    <p class="exp-position">{{index $elem_val 1}}</p>
+                                    <ul>
+                                        {{ with (index $elem_val 6)  }}
+                                        <li>{{index $elem_val 6}}</li>
+                                        {{end}}
+                                        {{ with (index $elem_val 7)  }}
+                                        <li>{{index $elem_val 7}}</li>
+                                        {{end}}
+                                        {{ with (index $elem_val 8)  }}
+                                        <li>{{index $elem_val 8}}</li>
+                                        {{ end }}                                
+                                                                               
+                                      </ul>
+                                    <p class="exp-desc">                                        
+                                    </p>
+                                </div>
+                            </div>                            
+                        {{end}}                      
+                    {{ end }}                    
+       
+
+                <section class="education gap">
+                    <div class="right-title">Education</div>
+                    {{range $elem_index, $elem_val := $resume}}
+                    {{ if in (index $elem_val 0) "education" }}
+                    <div class="education-contents">
+                        <div class="education-left">
+                            <p class="education-school-name">{{index $elem_val 3}}</p>
+                            <p class="educationp-time-period">{{index $elem_val 4}}-{{index $elem_val 5}}</p>
+                        </div>
+                        <div class="education-right">
+                            <p class="education-subject">{{index $elem_val 1}}</p>
+                            <!-- <p class="education-desc">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
+                                Fugit laborum accusantium repellat?
+                            </p> -->
+                        </div>
+                    </div>
+                    {{end}}
+                    {{end}}
+                    
+                </section>
+
+                <section class="awards gap">
+                    <div class="right-title">Awards & Certificates</div>
+                    <div class="awards-contents">
+                        <div class="awards-left">
+                            <p class="awards-company-name">Company x</p>
+                            <p class="awards-time-period">24 June 2016</p>
+                        </div>
+                        <div class="awards-right">
+                            <p class="awards-name">Employee of the month</p>
+                            <p class="awards-desc">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
+                                Fugit laborum accusantium repellat?
+                            </p>
+                        </div>
+                    </div>
+                    <div class="awards-contents">
+                        <div class="awards-left">
+                            <p class="awards-company-name">Certificate x</p>
+                            <p class="awards-time-period">12 January 2019</p>
+                        </div>
+                        <div class="awards-right">
+                            <p class="awards-name">Certificate of complition</p>
+                            <p class="awards-desc">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
+                                Fugit laborum accusantium repellat?
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
