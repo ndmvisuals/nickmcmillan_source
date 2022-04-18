@@ -41,7 +41,9 @@
         <section class="left-section">
             <div class="left-section-contents">
                 <div class="profile">
-                    <img class="profile-image" src="/static/img/nick_profile.jpg" alt="Profile image">
+                    {{ range .Site.Params.profile_image -}}
+                    <img class="profile-image" src= "{{ . | absURL }}" alt="Profile image">
+                    {{end}}
                     <p class="name">Nick McMillan</p>
                     <p class="profession">Data and Video Journalist</p>
                 </div>

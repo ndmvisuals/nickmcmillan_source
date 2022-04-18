@@ -26,13 +26,13 @@ disqusShortname = ""
   custom_css = ["css/resume-style.css"]
   custom_js  = []
   favicon    = "favicon.ico"
-  profile_image = "/img/nick_profile.jpg"
+  profile_image = ["img/nick.jpg"]
 
   # Just a custom image variable, please define it in .md files for content.
   image = ""
 
   # Variables from the portfolio theme
-  sidebarAbout = ["A collection of video projects that I have done"]
+  sidebarAbout = ["A collection of video and motion graphic projects that I have done"]
 
   # 404 error customization
   [params.error404]
@@ -55,6 +55,17 @@ disqusShortname = ""
         name = "Resume"
         url = "resume"
 
+    [[params.navigation.links]]
+        name = "Video & Motion Graphics"
+        url = "video-portfolio"
+
+    [[params.navigation.links]]
+        name = "Data"
+        url = "https://github.com/ndmvisuals/data_journalism_portfolio"
+
+    [[params.navigation.links]]
+        name = "Photography"
+        # url = 
     
 
     # Add custom links here by uncommenting code below. To remove links just delete
@@ -89,21 +100,21 @@ disqusShortname = ""
 
       
     [[params.tiles.showcase]]
-      title = "Video Portfolio"
-      subtitle = "Click to see video projects"
+      title = "Video & Motion Graphics"
+      subtitle = "Click to see projects"
       # image = "pic02.jpg"
       url = "video-portfolio/"
     
     [[params.tiles.showcase]]
-      title = "Data Portfolio"
-      subtitle = "Click to see data projects"
+      title = "Data"
+      subtitle = "Click to see projects"
       # image = 
       url = "https://github.com/ndmvisuals/data_journalism_portfolio"
 
 
     [[params.tiles.showcase]]
-    title = "Photo Portfolio"
-    subtitle = "Click to see photography portfolio"
+    title = "Photography"
+    subtitle = "Click to see projects"
     # image = "pic02.jpg"
     # url = "blogs/tempus"
 
