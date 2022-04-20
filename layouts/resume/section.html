@@ -35,6 +35,11 @@
     {{ $contact_url := "/data/nicks_resume_contact.csv" }}    
     {{ $contact := getCSV $sep $contact_url }}
 
+    <!-- Awards and Honors -->
+    
+    {{ $awards_url := "/data/nicks_awards.csv" }}    
+    {{ $awards := getCSV $sep $awards_url}}
+
 
 
     <main class="resume-contents">
@@ -143,7 +148,7 @@
                             <div class="experience-contents">
                                 <div class="exp-left">
                                     <p class="exp-company-name">{{index $elem_val 3}}</p>
-                                    <p class="exp-time-period">{{index $elem_val 4}}-{{index $elem_val 5}}</p>
+                                    <p class="exp-time-period">{{index $elem_val 4}} -> {{index $elem_val 5}}</p>
                                 </div>
                                 <div class="exp-right">
                                     <p class="exp-position">{{index $elem_val 1}}</p>
@@ -156,7 +161,17 @@
                                         {{end}}
                                         {{ with (index $elem_val 8)  }}
                                         <li>{{index $elem_val 8}}</li>
-                                        {{ end }}                                
+                                        {{ end }}  
+                                        {{ with (index $elem_val 9)  }}
+                                        <li>{{index $elem_val 9}}</li>
+                                        {{ end }} 
+                                        {{ with (index $elem_val 10)  }}
+                                        <li>{{index $elem_val 10}}</li>
+                                        {{ end }} 
+                                        {{ with (index $elem_val 11)  }}
+                                        <li>{{index $elem_val 11}}</li>
+                                        {{ end }}                              
+                                                                                                        
                                                                                
                                       </ul>
                                     <p class="exp-desc">                                        
@@ -166,6 +181,28 @@
                         {{end}}                      
                     {{ end }}                    
        
+
+                
+
+                <section class="awards gap">
+                    <div class="right-title">Awards & Honors </div>
+                    {{range $elem_index, $elem_val := $awards}}
+                    <div class="awards-contents">
+                        <div class="awards-left">
+                            <p class="awards-company-name"> {{index $elem_val 0}}   </p>
+                            <p class="awards-time-period">{{index $elem_val 1}}</p>
+                        </div>
+                        <div class="awards-right">
+                            <p class="awards-name"></p>
+                            <p class="awards-desc">
+                                <!-- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
+                                Fugit laborum accusantium repellat? -->
+                                {{index $elem_val 2}}
+                            </p>
+                        </div>
+                    </div> 
+                    {{end}}                  
+                </section>
 
                 <section class="education gap">
                     <div class="right-title">Education</div>
@@ -189,35 +226,13 @@
                     
                 </section>
 
-                <section class="awards gap">
-                    <div class="right-title">Awards & Certificates</div>
-                    <div class="awards-contents">
-                        <div class="awards-left">
-                            <p class="awards-company-name">Company x</p>
-                            <p class="awards-time-period">24 June 2016</p>
-                        </div>
-                        <div class="awards-right">
-                            <p class="awards-name">Employee of the month</p>
-                            <p class="awards-desc">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
-                                Fugit laborum accusantium repellat?
-                            </p>
-                        </div>
-                    </div>
-                    <div class="awards-contents">
-                        <div class="awards-left">
-                            <p class="awards-company-name">Certificate x</p>
-                            <p class="awards-time-period">12 January 2019</p>
-                        </div>
-                        <div class="awards-right">
-                            <p class="awards-name">Certificate of complition</p>
-                            <p class="awards-desc">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, quo. Non provident odio nam quas praesentium! 
-                                Fugit laborum accusantium repellat?
-                            </p>
-                        </div>
-                    </div>
-                </section>
+
+
+
+
+
+
+
             </div>
         </section>
     </main>

@@ -83,7 +83,7 @@ disqusShortname = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, I'm Nick."
-    subtitle = "Award Winning Investigative Reporter @NPR. Previously: @HowardCenterUMD, @newsy. Tools: Data, Videography"
+    subtitle = "Award Winning Investigative Reporter. Now: @NPR. Previously: @HowardCenterUMD, @newsy. Tools: Data, Videography"
     buttonText = "Explore"
 
 
